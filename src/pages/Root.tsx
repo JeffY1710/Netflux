@@ -1,4 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Header } from "../components/common/Header";
 
 export default function Root(){
     return(
@@ -9,14 +10,7 @@ export default function Root(){
             <title>Document</title>
         </head>
         <body>
-            <header>
-                <nav>
-                   <ul>
-                        <li><Link to="#">Temp</Link></li>
-                        <li><Link to="#">Temp</Link></li>
-                   </ul>
-                </nav>
-            </header>
+            <Header />
             <Outlet />
         </body>
         </html>
