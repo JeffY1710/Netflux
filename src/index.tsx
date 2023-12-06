@@ -1,25 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './assets/css/global.css';
-import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Root from './pages/Root';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./assets/css/global.css";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Root from "./pages/Root";
+import Inscription from "./components/common/inscription/Inscription";
+import Connexion from "./components/common/connexion/Connexion";
+import MotDePasseOublie from "./components/common/connexion/MotDePasseOublie";
+
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+	document.getElementById("root") as HTMLElement
 );
 
 const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Root />,
+	},
+	{
+		path: "/inscription",
+		element: <Inscription />,
+	},
+	{
+		path: "/connexion",
+		element: <Connexion />,
+	},
   {
-    path: "/",
-    element: <Root />,
-  },
+    path:"/motdepasseoublie",
+    element: <MotDePasseOublie/>
+  }
 ]);
 
+
+
+
+
+
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+	<React.StrictMode>
+		<RouterProvider router={router} />
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
