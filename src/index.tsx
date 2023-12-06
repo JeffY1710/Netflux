@@ -4,6 +4,7 @@ import './assets/css/global.css';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './pages/Root';
+import Profile from './pages/Profil';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,6 +15,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
   },
+
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+
 ]);
 
 root.render(
