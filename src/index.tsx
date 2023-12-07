@@ -7,6 +7,7 @@ import Root from "./pages/Root";
 import Inscription from "./components/common/inscription/Inscription";
 import Connexion from "./components/common/connexion/Connexion";
 import MotDePasseOublie from "./components/common/connexion/MotDePasseOublie";
+import Header from "./components/common/Header";
 
 
 const root = ReactDOM.createRoot(
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <Root />,
 	},
+  {
+    path:"/header",
+    element: <Header/>
+  },
 	{
 		path: "/inscription",
 		element: <Inscription />,
