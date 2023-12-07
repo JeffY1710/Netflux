@@ -7,6 +7,7 @@ import Root from "./pages/Root";
 import Inscription from "./components/common/inscription/Inscription";
 import Connexion from "./components/common/connexion/Connexion";
 import MotDePasseOublie from "./components/common/connexion/MotDePasseOublie";
+import Profile from "./pages/Profile";
 
 
 const root = ReactDOM.createRoot(
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
   {
     path:"/motdepasseoublie",
     element: <MotDePasseOublie/>
-  }
+  },
+  {
+		path: "/pages",
+		element: <Profile/>,
+	},
 ]);
 
 
