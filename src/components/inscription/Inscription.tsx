@@ -85,6 +85,7 @@ const Form2: React.FC = () => {
             <Link to="/connexion" className='button2' >
 						Déjà un compte ?
             </Link>
+            
 				</form>
 			</div>
 		</>
