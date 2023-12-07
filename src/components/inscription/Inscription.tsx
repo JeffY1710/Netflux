@@ -1,7 +1,7 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Inscription, getCollection } from "../../../data/firebase/global";
+import { Inscription, getCollection } from "../../data/firebase/global"
 
 interface FormData {
 	firstName: string;

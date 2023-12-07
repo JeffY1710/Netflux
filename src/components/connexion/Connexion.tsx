@@ -1,6 +1,7 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Connexion, isConnected } from "../../data/firebase/global";
 interface FormData {
 	email: string;
 	password: string;
