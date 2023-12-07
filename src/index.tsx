@@ -18,10 +18,7 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <Root />,
 	},
-  {
-    path:"/header",
-    element: <Header/>
-  },
+ 
 	{
 		path: "/inscription",
 		element: <Inscription />,
