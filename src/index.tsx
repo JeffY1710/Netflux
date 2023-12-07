@@ -9,6 +9,10 @@ import Inscription from "./components/inscription/Inscription";
 import Connexion from "./components/connexion/Connexion";
 import MotDePasseOublie from "./components/connexion/MotDePasseOublie";
 import Profile from "./pages/Profile";
+import AfficherCardHome from "./components/liste_series/AfficherCardHome";
+import Header from "./components/common/Header";
+import SerieDetail from "./components/serie_details/SerieDetails";
+import SerieDetails from "./components/serie_details/SerieDetails";
 
 
 
@@ -17,10 +21,18 @@ const root = ReactDOM.createRoot(
 );
 
 const router = createBrowserRouter([
+
+ 
 	{
 		path: "/",
-		element: <Root />,
+		element: <Root/>,
 	},
+
+  {
+    path: "/detail",
+    element: <SerieDetails/>
+  },
+  
  
 	{
 		path: "/inscription",

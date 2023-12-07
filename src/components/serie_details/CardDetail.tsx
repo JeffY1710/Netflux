@@ -7,6 +7,7 @@ interface SeriesData {
   image: string;
   name: string;
   category: string;
+  description: string;
 }
 
 interface CardProps {
@@ -16,8 +17,9 @@ interface CardProps {
 
 
 const CardHome: React.FC<CardProps> = ({ seriesData }) => {
-  const { image, name, category } = seriesData;
+  const { image, name, category, description } = seriesData;
 
+  
   return (
     <>
     <div className=' flex-row'>
@@ -31,7 +33,8 @@ const CardHome: React.FC<CardProps> = ({ seriesData }) => {
     <div >
         <div className="font-bold text-xl mb-2 text-white mt-4">{name}</div>
         <p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{category}</p>
-        
+        <div className="font-bold text-xl mb-2 text-white mt-4">{description}</div>
+
       </div>
       
       </div></>
