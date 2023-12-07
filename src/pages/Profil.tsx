@@ -35,20 +35,46 @@ const Profile: React.FC = () => {
       </div>
    <div>
     <div>
-    <input type="password"
-    placeholder="Ancien mot de passe"
-    />
-     </div>
-    <div> 
-    <input type="paswword"
-    placeholder="Nouveau mot de passe"
-    />
+    <div className='old-password'>
+      <input type="password"
+    placeholder="Ancien mot de passe"/>
     </div>
-    <div>
+    
+    
+    <div className='new-password'>
+    <input type="password"
+    placeholder="Nouveau mot de passe"/>
+    </div>
+    
+    <div className='confirm-password'>
     <input type="password"
     placeholder="Confirmer nouveau mot de passe"/>
     </div>
+    </div>
+    
     <button onClick={updateProfile}>Modifier le mot de passe</button>
+    </div>   
+
+    <div>
+    <div>
+    <div className='old-email'>
+      <input type="text"
+    placeholder="Ancien email"/>
+    </div>
+    
+    
+    <div className='new-email'>
+    <input type="text"
+    placeholder="nouvel email"/>
+    </div>
+    
+    <div className='confirm-email'>
+    <input type="text"
+    placeholder="Confirmer nouvel email"/>
+    </div>
+    </div>
+    
+    <button onClick={updateProfile}>Modifier l'adresse mail</button>
     </div>   
     
       
