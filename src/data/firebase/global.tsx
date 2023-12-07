@@ -1,5 +1,6 @@
+import { log } from "console";
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
 import { getFirestore, collection, getDocs, getDoc, addDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -15,21 +16,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app)
+const auth = getAuth(app)
 const database = getFirestore(app)
+let currentUser: User;
 
 export async function Inscription(firstname: string, lastname: string, email: string, password: string){
     try {
-        createUserWithEmailAndPassword(auth, firstname, email)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed up 
-                const user = userCredential.user;
-                // ...
+                //const user = userCredential.user;
+                console.log("user created");
+                
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert(errorMessage);
             });
 
 
@@ -46,20 +48,59 @@ export async function Inscription(firstname: string, lastname: string, email: st
       }
 }
 
-async function getCollection(col: string) {
+export async function Connexion(email:string, password: string){
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    //const user = userCredential.user;
+    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+  });
+}
+
+
+export function isConnected():any{
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      currentUser = user;
+      console.log(uid);
+      
+      return true;
+    }else {
+      return false
+    }
+  });
+}
+
+export function test(){
+  console.log(currentUser.email);
+  
+}
+
+export async function disconnect(){
+  signOut(auth).then(() => {
+    // Sign-out successful.
+    isConnected()
+  }).catch((error) => {
+    // An error happened.
+    console.log(error);
+    
+  });
+}
+
+export async function getCollection(col: string) {
     const coll = collection(database, col);
     const snapshot = await getDocs(coll);
     const collList = snapshot.docs.map(doc => doc.data());
     return collList;
 }
-
-// onAuthStateChanged(auth, user => {
-//     if (user != null) {
-//         console.log("logged in");
-//     }else{
-//         console.log("no user");
-//     }
-// })
 
 
 

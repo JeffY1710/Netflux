@@ -1,7 +1,7 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
-import "./connexion.css";
 import { Link } from "react-router-dom";
+import { Connexion, disconnect, isConnected } from "../../../data/firebase/global";
 interface FormData {
 	email: string;
 	password: string;
@@ -21,7 +21,12 @@ const Form: React.FC = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		// Handle form submission, e.g., send data to server
-		console.log("Form data submitted:", formData);
+		Connexion(formData.email, formData.password)
+		if (isConnected() == true) {
+			console.log("connected");
+		}else{
+			console.log("not");
+		}
 	};
 
 	return (
@@ -31,7 +36,7 @@ const Form: React.FC = () => {
     </style>
 			<h1 className='title'>Connexion</h1>
 			<div className='box'>
-				<form onSubmit={handleSubmit}>
+				<form >
 					<div className='input-wrapper'>
 						<input
 							type='email'
@@ -53,12 +58,13 @@ const Form: React.FC = () => {
 							placeholder='Mot de passe'
 						/>
 					</div>
-					<button type='submit' className='btn'>
+					<button type='submit' className='btn' onClick={handleSubmit}>
 						Se connecter
 					</button>
-          <Link to="/motdepasseoublie" className='button2' >
-						Mot de passe oublié ?
-            </Link>
+					<button onClick={disconnect}>logout</button>
+					<Link to="/motdepasseoublie" className='button2' >
+									Mot de passe oublié ?
+					</Link>
 				</form>
 			</div>
 		</>
