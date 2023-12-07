@@ -59,6 +59,10 @@ const Form: React.FC = () => {
           <Link to="/motdepasseoublie" className='button2' >
 						Mot de passe oublié ?
             </Link>
+
+            <Link to="/inscription" className='button2' >
+						Se créer un compte
+            </Link>
 				</form>
 			</div>
 		</>
