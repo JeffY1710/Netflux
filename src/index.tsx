@@ -4,10 +4,9 @@ import "./assets/css/global.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root";
-import Inscription from "./components/common/inscription/Inscription";
-import Connexion from "./components/common/connexion/Connexion";
-import MotDePasseOublie from "./components/common/connexion/MotDePasseOublie";
-import Header from "./components/common/Header";
+import Inscription from "./components/inscription/Inscription";
+import Connexion from "./components/connexion/Connexion";
+import MotDePasseOublie from "./components/connexion/MotDePasseOublie";
 
 
 const root = ReactDOM.createRoot(

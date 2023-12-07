@@ -15,6 +15,8 @@ export default function Root() {
 					add user
 				</button>
 				<Outlet />
+
+                <AfficherCardHome/>
                 
 		</>
 	);
