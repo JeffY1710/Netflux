@@ -1,7 +1,5 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
-import "./connexion.css";
-import { redirect } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 interface FormData {
@@ -49,7 +47,7 @@ const Form2: React.FC = () => {
     </style>
 			<h1 className='title'>Réinitialiser votre mot de passe</h1>
 			<div className='box'>
-				<form onSubmit={handleSubmit}>
+				<form>
 					
 						<div className="input-wrapper">
 							<input
@@ -65,7 +63,7 @@ const Form2: React.FC = () => {
 						
 					<button type='submit'  
 					onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleSubmit(e)}
-					className="btn">Continuer</button>
+					className="btn" onSubmit={handleSubmit}>Continuer</button>
 
 				</form>
 			</div>

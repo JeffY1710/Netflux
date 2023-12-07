@@ -1,7 +1,7 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
-import "./inscription.css";
 import { Link } from "react-router-dom";
+import { Inscription, getCollection } from "../../../data/firebase/global";
 
 interface FormData {
 	firstName: string;
@@ -26,6 +26,9 @@ const Form2: React.FC = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		// Handle form submission, e.g., send data to server
+		Inscription(formData.firstName, formData.lastName, formData.email, formData.password)
+		console.log(getCollection("users"));
+		
 		console.log("Form data submitted:", formData);
 	};
 
@@ -36,7 +39,7 @@ const Form2: React.FC = () => {
     </style>
 			<h1 className='title'>Inscription</h1>
 			<div className='box'>
-				<form onSubmit={handleSubmit}>
+				<form>
 					<div className='input-wrapper'>
 						
 							<input
@@ -79,7 +82,7 @@ const Form2: React.FC = () => {
 								placeholder='Mot de passe'
 							/>
 						</div>
-					<button type='submit' className="btn">S'inscrire</button>
+					<button type='submit' className="btn" onClick={handleSubmit}>S'inscrire</button>
 
 					
             <Link to="/connexion" className='button2' >
