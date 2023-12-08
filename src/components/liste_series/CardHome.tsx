@@ -7,7 +7,7 @@ interface SeriesData {
   id: number;
   image: string;
   name: string;
-  category: string[];
+  category: number[];
 }
 
 interface SerieId{
@@ -16,6 +16,7 @@ interface SerieId{
 
 interface CardProps {
   seriesData: SeriesData;
+  //genreName: string
   serieId: number;
 }
 
@@ -26,6 +27,8 @@ async function addToWatchlist(id:string, idShow: number){
   // const test : []= t
   // console.log(test);  
 }
+
+//const CardHome: React.FC<CardProps> = ({ seriesData, genreName }) => {
 
 
 
@@ -45,10 +48,16 @@ const CardHome: React.FC<CardProps> = ({ seriesData, serieId }) => {
     </div>
     <div >
         <div className="font-bold text-xl mb-2 text-white mt-4">{name}</div>
+
+        //<p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{genreName}</p>
+        
+      </div>
+
         <p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{category}</p>
         <button >{serieId}</button>
         {/*onClick={()=>addToWatchlist(getUserById(""), serieId)}*/}
       </div> 
+
       
       </div></>
   );
