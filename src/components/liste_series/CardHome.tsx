@@ -1,6 +1,7 @@
 // CardComponent.tsx
 
 import Image from 'react';
+import { getUserById, updateUserAdd } from '../../data/firebase/global';
 
 interface SeriesData {
   id: number;
@@ -9,14 +10,28 @@ interface SeriesData {
   category: string[];
 }
 
+interface SerieId{
+  id: number;
+}
+
 interface CardProps {
   seriesData: SeriesData;
+  serieId: number;
+}
+
+
+async function addToWatchlist(id:string, idShow: number){
+  updateUserAdd(id, idShow);
+  // const t : any = await getUserById("AFzubidROKHpWRKEKeJr")
+  // const test : []= t
+  // console.log(test);  
 }
 
 
 
-const CardHome: React.FC<CardProps> = ({ seriesData }) => {
+const CardHome: React.FC<CardProps> = ({ seriesData, serieId }) => {
   const { image, name, category } = seriesData;
+  const currentUser = getUserById("")
 
   return (
     <>
@@ -31,8 +46,9 @@ const CardHome: React.FC<CardProps> = ({ seriesData }) => {
     <div >
         <div className="font-bold text-xl mb-2 text-white mt-4">{name}</div>
         <p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{category}</p>
-        
-      </div>
+        <button >{serieId}</button>
+        {/*onClick={()=>addToWatchlist(getUserById(""), serieId)}*/}
+      </div> 
       
       </div></>
   );

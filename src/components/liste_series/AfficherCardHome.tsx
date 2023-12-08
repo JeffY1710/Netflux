@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CardHome from "./CardHome";
 import { getGenres, getSeries } from "../../data/api";
-import { addSerie } from "../../data/firebase/global";
+import { addSerie, isConnected } from "../../data/firebase/global";
+import { NavLink } from "react-router-dom";
 
 interface SeriesList {
   id: number;
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
 useEffect(() => {
   // Fetch data from your API here
   console.log(getSeries());
+  isConnected();  
   
   
   const fetchData = async () => {
@@ -37,10 +39,10 @@ useEffect(() => {
       //setGenresList(genres.result.map())
 
       // Set the seriesList and featuredSeries state based on API response
-      setSeriesList(seriesData.results.map((serie: { id: any; poster_path: any; title: any; genre_ids: string[] ;overview: any; }) => ({
+      setSeriesList(seriesData.results.map((serie: { id: number; poster_path: string; name: string; genre_ids: string[] ;overview: string; }) => ({
         id: serie.id,
         image: `https://image.tmdb.org/t/p/w500${serie.poster_path}`,
-        name: serie.title,
+        name: serie.name,
         category: serie.genre_ids, // You may need to get the actual category from your API
         description: serie.overview,
       })));
@@ -70,13 +72,13 @@ useEffect(() => {
       </style>
 
       <div className="w-full h-full object-cover pl-12 px-12 mt-24">
-        <CardHome seriesData={featuredSeries} />
+        <CardHome serieId={featuredSeries.id} seriesData={featuredSeries} />
       </div>
       <div className="pl-12 px-12">
         <h1 className="text-5xl font-custom font-bold mb-4 mt-24 text-white pb-12">Shows populaires</h1>
         <div className="grid grid-cols-5 gap-12">
           {seriesList.map(series => (
-            <CardHome key={series.id} seriesData={series} />
+            <NavLink to={"" + series.name.replace(/ /g,'')}><CardHome serieId={series.id} seriesData={series} /></NavLink>
           ))}
         </div>
       </div>

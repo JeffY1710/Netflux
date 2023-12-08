@@ -27,13 +27,17 @@ const router = createBrowserRouter([
  
 	{
 		path: "/",
-		element: <Calendar/>,
+		element: <AfficherCardHome/>,
 	},
 
-  {
-    path: "/detail",
-    element: <SerieDetails/>
-  },
+	{
+		path: "/:showName",
+		element: <SerieDetails/>
+	},
+	{
+		path:"/profil",
+		element: <Profile />
+	},
   
  
 	{
