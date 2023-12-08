@@ -20,6 +20,22 @@ const auth = getAuth(app)
 const database = getFirestore(app)
 let currentUser: User;
 
+export async function addSerie(id: any, poster_path: string, title: string, genre_ids: string[] ,overview: string,){
+  try {
+    const serieDoc = await addDoc(collection(database, "series"), {
+      id: id,
+      poster_path: poster_path,
+      title: title,
+      genre_ids: genre_ids,
+      overview: overview
+    });
+    console.log("Serie created");
+
+  } catch (e) {
+    console.error("Error adding Serie: ", e);
+  }
+}
+
 export async function Inscription(firstname: string, lastname: string, email: string, password: string){
     try {
         createUserWithEmailAndPassword(auth, email, password)
