@@ -159,3 +159,37 @@ body {
   display: block;
   color:black;
 }
+
+.buttonEmail{
+  border-radius: 7px;
+  padding: 7px;
+  background-color: bisque;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  color: #2D2C27;
+}
+
+.buttonEmail:hover{
+  background-color:  rgb(119, 105, 88);
+  color: bisque;
+}
+
+.buttonPassword{
+  border-radius: 7px;
+  padding: 7px;
+  background-color: bisque;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  color: #2D2C27;
+}
+
+.buttonPassword:hover{
+  background-color:  rgb(119, 105, 88);
+  color : bisque;
+}
