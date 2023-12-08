@@ -15,6 +15,7 @@ export async function getSeries(){
 
 export async function getGenres(genre_ids){
   const response = await fetch("https://api.themoviedb.org/3/genre/tv/list", options)
+  
   let genres = await response.json()
   //console.log(genres.results[0].id);
   return genres;

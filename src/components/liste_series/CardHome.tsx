@@ -6,16 +6,17 @@ interface SeriesData {
   id: number;
   image: string;
   name: string;
-  category: string[];
+  category: number[];
 }
 
 interface CardProps {
   seriesData: SeriesData;
+  genreName: string
 }
 
 
 
-const CardHome: React.FC<CardProps> = ({ seriesData }) => {
+const CardHome: React.FC<CardProps> = ({ seriesData, genreName }) => {
   const { image, name, category } = seriesData;
 
   return (
@@ -30,7 +31,7 @@ const CardHome: React.FC<CardProps> = ({ seriesData }) => {
     </div>
     <div >
         <div className="font-bold text-xl mb-2 text-white mt-4">{name}</div>
-        <p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{category}</p>
+        <p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{genreName}</p>
         
       </div>
       

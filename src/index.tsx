@@ -26,7 +26,7 @@ const router = createBrowserRouter([
  
 	{
 		path: "/",
-		element: <Calendar/>,
+		element: <AfficherCardHome/>,
 	},
 
   {
