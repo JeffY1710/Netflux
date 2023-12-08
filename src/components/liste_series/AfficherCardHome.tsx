@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CardHome from "./CardHome";
 import { getGenres, getSeries } from "../../data/api";
 
-import { addSerie } from "../../data/firebase/global";
 import Header from "../common/Header";
 
 import { addSerie, isConnected } from "../../data/firebase/global";
@@ -107,13 +106,13 @@ const Home: React.FC = () => {
       </style>
 
       <div className="w-full h-full object-cover pl-12 px-12 mt-24">
-        <CardHome serieId={featuredSeries.id} seriesData={featuredSeries} />
+        <CardHome serieId={featuredSeries.id} seriesData={featuredSeries} genreName={""} />
       </div>
       <div className="pl-12 px-12">
         <h1 className="text-5xl font-custom font-bold mb-4 mt-24 text-white pb-12">Shows populaires</h1>
         <div className="grid grid-cols-5 gap-12">
           {seriesList.map(series => (
-            <NavLink to={"" + series.name.replace(/ /g,'')}><CardHome serieId={series.id} seriesData={series} /></NavLink>
+            <NavLink to={"" + series.name.replace(/ /g,'')}><CardHome serieId={series.id} seriesData={series} genreName={""} /></NavLink>
           ))}
         </div>
       </div>

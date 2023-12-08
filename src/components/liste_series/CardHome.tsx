@@ -16,7 +16,7 @@ interface SerieId{
 
 interface CardProps {
   seriesData: SeriesData;
-  //genreName: string
+  genreName: string;
   serieId: number;
 }
 
@@ -32,7 +32,7 @@ async function addToWatchlist(id:string, idShow: number){
 
 
 
-const CardHome: React.FC<CardProps> = ({ seriesData, serieId }) => {
+const CardHome: React.FC<CardProps> = ({ seriesData, serieId, genreName }) => {
   const { image, name, category } = seriesData;
   const currentUser = getUserById("")
 
@@ -59,7 +59,7 @@ const CardHome: React.FC<CardProps> = ({ seriesData, serieId }) => {
       </div> 
 
       
-      </div></>
+      </>
   );
 };
 
