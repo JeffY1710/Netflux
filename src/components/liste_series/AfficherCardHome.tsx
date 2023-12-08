@@ -47,13 +47,13 @@ const Home: React.FC = () => {
 						(serie: {
 							id: any;
 							poster_path: any;
-							title: any;
+							name: any;
 							genre_ids: string[];
 							overview: any;
 						}) => ({
 							id: serie.id,
 							image: `https://image.tmdb.org/t/p/w500${serie.poster_path}`,
-							name: serie.title,
+							name: serie.name,
 							category: serie.genre_ids, // You may need to get the actual category from your API
 							description: serie.overview,
 						})
