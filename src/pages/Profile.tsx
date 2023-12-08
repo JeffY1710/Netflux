@@ -21,7 +21,12 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=DM+Serif+Display&family=Lora:wght@500&family=Montserrat:wght@300&display=swap');
+  </style>
+
+  <div className="body">
       <div className="max-w-2xl mx-auto py-8">
         <h1 className="text-3xl font-bold mb-4">Profile Page</h1>
         <div className="mb-8">
@@ -37,26 +42,27 @@ const Profile: React.FC = () => {
             <input
               type="password"
               placeholder="Ancien mot de passe"
-              className="rounded px-4 py-2 w-full bg-gray-800 text-white"
+              className="rounded font-custom text-xs px-4 py-2 w-full bg-white text-black"
             />
           </div>
           <div className="mb-4">
             <input
               type="password"
               placeholder="Nouveau mot de passe"
-              className="rounded px-4 py-2 w-full bg-gray-800 text-white"
+              className="rounded font-custom text-xs px-4 py-2 w-full bg-white text-black"
             />
           </div>
           <div className="mb-4">
             <input
               type="password"
               placeholder="Confirmer nouveau mot de passe"
-              className="rounded px-4 py-2 w-full bg-gray-800 text-white"
+              className="rounded font-custom text-xs px-4 py-2 w-full bg-white text-black"
             />
           </div>
           <button
+            type="submit"
             onClick={updateProfile}
-            className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700"
+            className="buttonPassword"
           >
             Modifier le mot de passe
           </button>
@@ -68,32 +74,34 @@ const Profile: React.FC = () => {
             <input
               type="text"
               placeholder="Ancien email"
-              className="rounded px-4 py-2 w-full bg-gray-800 text-white"
+              className="rounded font-custom text-xs px-4 py-2 w-full bg-white text-black"
             />
           </div>
           <div className="mb-4">
             <input
               type="text"
               placeholder="Nouvel email"
-              className="rounded px-4 py-2 w-full bg-gray-800 text-white"
+              className="rounded font-custom text-xs px-4 py-2 w-full bg-white text-black"
             />
           </div>
           <div className="mb-4">
             <input
               type="text"
               placeholder="Confirmer nouvel email"
-              className="rounded px-4 py-2 w-full bg-gray-800 text-white"
+              className="rounded font-custom text-xs px-4 py-2 w-full bg-white text-black"
             />
           </div>
           <button
+            type="submit"
             onClick={updateProfile}
-            className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700"
+            className="buttonEmail"
           >
             Modifier l'email
           </button>
         </div>
       </div>
     </div>
+    </>
   );
 };
 
