@@ -1,7 +1,7 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Connexion, isConnected } from "../../data/firebase/global";
+import { Connexion, disconnect, isConnected } from "../../data/firebase/global";
 interface FormData {
 	email: string;
 	password: string;
@@ -61,6 +61,7 @@ const Form: React.FC = () => {
 					<button type='submit' className='btn' onClick={handleSubmit}>
 						Se connecter
 					</button>
+					<button onClick={disconnect}>logout</button>
 					<Link to="/motdepasseoublie" className='button2' >
 									Mot de passe oublié ?
 					</Link>

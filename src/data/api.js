@@ -10,6 +10,10 @@ export async function getSeries(){
 
     const response = await fetch("https://api.themoviedb.org/3/discover/tv", options)
     let series = await response.json()
+    // console.log("-----------------------------------");
+    // console.log(series.results[]);
+    // console.log("-----------------------------------");
+
     return series;
 }
 
@@ -19,3 +23,5 @@ export async function getGenres(genre_ids){
   //console.log(genres.results[0].id);
   return genres;
 }
+
+

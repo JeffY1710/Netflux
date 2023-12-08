@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
-import { getFirestore, collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, getDoc, addDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app)
 const database = getFirestore(app)
-let currentUser: User;
+export let currentUserEmail: any;
 
 export async function addSerie(id: any, poster_path: string, title: string, genre_ids: string[] ,overview: string,){
   try {
@@ -55,7 +55,7 @@ export async function Inscription(firstname: string, lastname: string, email: st
             });
 
 
-        if (firstname && lastname && email && password) {
+        if (()=>verifyEmpty) {
           const UserDoc = await addDoc(collection(database, "users"), {
             first: firstname,
             last: lastname,
@@ -74,11 +74,21 @@ export async function Inscription(firstname: string, lastname: string, email: st
       }
 }
 
+export function verifyEmpty(firstname:string, lastname:string, email:string,  password:string): boolean{
+  if (firstname && lastname && email && password) {
+    return true
+  }else{
+    return false
+  }
+}
+
 export async function Connexion(email:string, password: string){
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
-    //const user = userCredential.user;
+    const user = userCredential.user;
+    console.log(user);
+    
     
   })
   .catch((error) => {
@@ -94,10 +104,8 @@ export function isConnected():any{
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid
-      currentUser = user;
-      console.log(uid);
-      
+      const email = user.email
+      currentUserEmail = email;      
       return true;
     }else {
       return false
@@ -106,7 +114,7 @@ export function isConnected():any{
 }
 
 export function test(){
-  console.log(currentUser.email);
+ // console.log(currentUser.email);
   
 }
 
@@ -128,14 +136,36 @@ export async function getCollection(col: string) {
     return collList;
 }
 
+export async function updateUserAdd(id: string, data: number){
+  const docRef = doc(database, "users", id);
+  await updateDoc(docRef, {
+    series: arrayUnion(data)
+  });
+}
+
+export async function updateUserDelete(id: string, data: number){
+  const docRef = doc(database, "users", id);
+  await updateDoc(docRef, {
+    series: arrayRemove(data)
+  });
+}
+
+// async function getUserByEmail(){
+  
+// }
+
 export async function getUserById(id: string){
   const docRef = doc(database, "users", id);
   const docSnap = await getDoc(docRef);
+  //const test = docSnap.get("email");
 
   if (docSnap.exists()) {
     console.log("Document data:", docSnap.data());
+    
+    return docSnap;
   } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");
   }
 }
+
