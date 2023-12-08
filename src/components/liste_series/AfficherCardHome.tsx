@@ -32,14 +32,6 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const seriesData = await getSeries();
-      seriesData.results.forEach(async (serie: { id: any; poster_path: string; title: string; genre_ids: string[] ;overview: string; }) => {
-        if (serie.id && serie.poster_path && serie.title && serie.genre_ids && serie.overview) {
-            await addSerie(serie.id, serie.poster_path, serie.title, serie.genre_ids, serie.overview);
-        } else {
-            console.error("Missing data for serie:", serie);
-        }
-    });
-
       const genres = await getGenres();
 
       //setGenresList(genres.result.map())

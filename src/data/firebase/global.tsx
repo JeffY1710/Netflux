@@ -1,7 +1,6 @@
-import { log } from "console";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
-import { getFirestore, collection, getDocs, getDoc, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, getDoc, addDoc, doc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -36,6 +35,11 @@ export async function addSerie(id: any, poster_path: string, title: string, genr
   }
 }
 
+export const isEmailValid = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 export async function Inscription(firstname: string, lastname: string, email: string, password: string){
     try {
         createUserWithEmailAndPassword(auth, email, password)
@@ -51,13 +55,19 @@ export async function Inscription(firstname: string, lastname: string, email: st
             });
 
 
-        const UserDoc = await addDoc(collection(database, "users"), {
-          first: firstname,
-          last: lastname,
-          email: email,
-          password: password
-        });
-        console.log("User created with ID: ", UserDoc.id);
+        if (firstname && lastname && email && password) {
+          const UserDoc = await addDoc(collection(database, "users"), {
+            first: firstname,
+            last: lastname,
+            email: email,
+            password: password,
+            series: []
+          });
+          console.log("User created with ID: ", UserDoc.id);
+        } else{
+          console.log("Complete all field");
+          
+        }
 
       } catch (e) {
         console.error("Error adding User: ", e);
@@ -118,5 +128,14 @@ export async function getCollection(col: string) {
     return collList;
 }
 
+export async function getUserById(id: string){
+  const docRef = doc(database, "users", id);
+  const docSnap = await getDoc(docRef);
 
-
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log("No such document!");
+  }
+}
