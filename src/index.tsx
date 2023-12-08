@@ -14,6 +14,7 @@ import Header from "./components/common/Header";
 import SerieDetail from "./components/serie_details/SerieDetails";
 import SerieDetails from "./components/serie_details/SerieDetails";
 import Calendar from "./components/calendrier/Calendar";
+import { Commentaires } from "./components/avis/Commentaires";
 
 
 
@@ -29,10 +30,14 @@ const router = createBrowserRouter([
 		element: <AfficherCardHome/>,
 	},
 
-  {
-    path: "/detail",
-    element: <SerieDetails/>
-  },
+	{
+		path: "/:showName",
+		element: <SerieDetails/>
+	},
+	{
+		path:"/profil",
+		element: <Profile />
+	},
   
  
 	{
@@ -51,6 +56,10 @@ const router = createBrowserRouter([
 		path: "/pages",
 		element: <Profile/>,
 	},
+  {
+    path:"/avis",
+    element: <Commentaires/>
+  }
 ]);
 
 

@@ -4,4 +4,5 @@ export interface User {
     last: string;
     email: string;
     password: string;
+    series: number[];
 }

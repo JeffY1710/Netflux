@@ -31,10 +31,6 @@ const Form2: React.FC = () => {
 		setEmailVerif(isEmailValid(formData.email));
 		Inscription(formData.firstName, formData.lastName, formData.email, formData.password)
 		console.log(getCollection("users"));
-		console.log("test");
-		console.log(getUserById("AFzubidROKHpWRKEKeJr"));
-		
-		
 	};
 	
 

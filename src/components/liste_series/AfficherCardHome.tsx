@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CardHome from "./CardHome";
 import { getGenres, getSeries } from "../../data/api";
+
 import { addSerie } from "../../data/firebase/global";
 import Header from "../common/Header";
+
+import { addSerie, isConnected } from "../../data/firebase/global";
+import { NavLink } from "react-router-dom";
+
 
 interface SeriesList {
 	id: number;
@@ -25,11 +30,17 @@ const Home: React.FC = () => {
 
 	// ...
 
+
 	const getGenreName = (id: number) => {
 		console.log(genresList);
 		const name = genresList.filter((genre: any) => genre.id === id)[0].name;
 		return name;
 	};
+ 
+  
+  
+
+
 
 	useEffect(() => {
 		// Fetch data from your API here
@@ -42,7 +53,7 @@ const Home: React.FC = () => {
 				setGenresList(genres.genres);
 				console.log(seriesData);
 				// Set the seriesList and featuredSeries state based on API response
-				setSeriesList(
+        {/*setSeriesList(
 					seriesData.results.map(
 						(serie: {
 							id: any;
@@ -59,6 +70,17 @@ const Home: React.FC = () => {
 						})
 					)
 				);
+        
+        */}
+
+      // Set the seriesList and featuredSeries state based on API response
+      setSeriesList(seriesData.results.map((serie: { id: number; poster_path: string; name: string; genre_ids: string[] ;overview: string; }) => ({
+        id: serie.id,
+        image: `https://image.tmdb.org/t/p/w500${serie.poster_path}`,
+        name: serie.name,
+        category: serie.genre_ids, // You may need to get the actual category from your API
+        description: serie.overview,
+      })));
 
 				// For the sake of this example, let's use the first movie as the featured series
 				setFeaturedSeries({
@@ -76,41 +98,28 @@ const Home: React.FC = () => {
 		fetchData();
 	}, []); // Empty dependency array to run the effect only once when the component mounts
 
-	return (
-		<>
-			<style>
-				@import
-				url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=DM+Serif+Display&family=Lora:wght@500&family=Montserrat:wght@300&display=swap');
-			</style>
-      <Header/>
 
-			<div className='w-full h-full object-cover pl-12 px-12 mt-24'>
-				{featuredSeries.category[0] && (
-					<CardHome
-						seriesData={featuredSeries}
-						genreName={getGenreName(featuredSeries.category[0])}
-					/>
-				)}
-			</div>
-			<div className='pl-12 px-12'>
-				<h1 className='text-5xl font-custom font-bold mb-4 mt-24 text-white pb-12'>
-					Shows populaires
-				</h1>
-				<div className='grid grid-cols-5 gap-12'>
-					{seriesList.map(
-						(series) =>
-							series.category[0] && (
-								<CardHome
-									key={series.id}
-									seriesData={series}
-									genreName={getGenreName(series.category[0])}
-								/>
-							)
-					)}
-				</div>
-			</div>
-		</>
-	);
+
+  return (
+    <>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=DM+Serif+Display&family=Lora:wght@500&family=Montserrat:wght@300&display=swap');
+      </style>
+
+      <div className="w-full h-full object-cover pl-12 px-12 mt-24">
+        <CardHome serieId={featuredSeries.id} seriesData={featuredSeries} />
+      </div>
+      <div className="pl-12 px-12">
+        <h1 className="text-5xl font-custom font-bold mb-4 mt-24 text-white pb-12">Shows populaires</h1>
+        <div className="grid grid-cols-5 gap-12">
+          {seriesList.map(series => (
+            <NavLink to={"" + series.name.replace(/ /g,'')}><CardHome serieId={series.id} seriesData={series} /></NavLink>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+
 };
 
 export default Home;
