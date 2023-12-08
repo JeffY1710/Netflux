@@ -6,7 +6,7 @@ interface SeriesData {
   id: number;
   image: string;
   name: string;
-  category: string;
+  category: string[];
 }
 
 interface CardProps {

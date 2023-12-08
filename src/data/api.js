@@ -6,9 +6,16 @@ const options = {
     }
   };
 
-export async function getMovies(){
+export async function getSeries(){
 
-    const response = await fetch("https://api.themoviedb.org/3/discover/movie", options)
-    let movies = await response.json()
-    return movies;
+    const response = await fetch("https://api.themoviedb.org/3/discover/tv", options)
+    let series = await response.json()
+    return series;
+}
+
+export async function getGenres(genre_ids){
+  const response = await fetch("https://api.themoviedb.org/3/genre/tv/list", options)
+  let genres = await response.json()
+  //console.log(genres.results[0].id);
+  return genres;
 }

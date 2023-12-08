@@ -1,7 +1,8 @@
 // src/components/Form.tsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Inscription, getCollection } from "../../data/firebase/global"
+import { Inscription, getCollection, getUserById, isEmailValid } from "../../data/firebase/global"
+import { Alert, Snackbar } from "@mui/material";
 
 interface FormData {
 	firstName: string;
@@ -11,6 +12,7 @@ interface FormData {
 }
 
 const Form2: React.FC = () => {
+	const [emailVerif, setEmailVerif] = useState(false); 
 	const [formData, setFormData] = useState<FormData>({
 		firstName: "",
 		lastName: "",
@@ -19,18 +21,22 @@ const Form2: React.FC = () => {
 	});
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
 		const { name, value } = e.target;
 		setFormData((prevData) => ({ ...prevData, [name]: value }));
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		// Handle form submission, e.g., send data to server
+		setEmailVerif(isEmailValid(formData.email));
 		Inscription(formData.firstName, formData.lastName, formData.email, formData.password)
 		console.log(getCollection("users"));
+		console.log("test");
+		console.log(getUserById("AFzubidROKHpWRKEKeJr"));
 		
-		console.log("Form data submitted:", formData);
+		
 	};
+	
 
 	return (
 		<>
@@ -70,6 +76,9 @@ const Form2: React.FC = () => {
 								onChange={handleChange}
 								placeholder='Adresse e-mail'
 							/>
+							{!emailVerif && (
+								<Alert severity="error">Entrer un email conforme</Alert>
+							)}
 						</div>
 
 						<div className="input-wrapper">

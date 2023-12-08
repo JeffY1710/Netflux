@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import CardHome from "./CardHome";
-import { getMovies } from "../../data/api";
+import { getGenres, getSeries } from "../../data/api";
+import { addSerie } from "../../data/firebase/global";
 
 interface SeriesList {
   id: number;
   image: string;
   name: string;
-  category: string;
+  category: string[];
   description: string;
 }
 
 const Home: React.FC = () => {
   const [seriesList, setSeriesList] = useState<SeriesList[]>([]);
+  const [genresList, setGenresList] = useState<SeriesList[]>([]);
   const [featuredSeries, setFeaturedSeries] = useState<SeriesList>({
     id: 0,
     image: '',
     name: '',
-    category: '',
+    category: [],
     description: '',
   });
 
@@ -24,26 +26,32 @@ const Home: React.FC = () => {
 
 useEffect(() => {
   // Fetch data from your API here
+  console.log(getSeries());
+  
+  
   const fetchData = async () => {
     try {
-      const moviesData = await getMovies();
+      const seriesData = await getSeries();
+      const genres = await getGenres();
+
+      //setGenresList(genres.result.map())
 
       // Set the seriesList and featuredSeries state based on API response
-      setSeriesList(moviesData.results.map((movie: { id: any; poster_path: any; title: any; overview: any; }) => ({
-        id: movie.id,
-        image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-        name: movie.title,
-        category: "Drame", // You may need to get the actual category from your API
-        description: movie.overview,
+      setSeriesList(seriesData.results.map((serie: { id: any; poster_path: any; title: any; genre_ids: string[] ;overview: any; }) => ({
+        id: serie.id,
+        image: `https://image.tmdb.org/t/p/w500${serie.poster_path}`,
+        name: serie.title,
+        category: serie.genre_ids, // You may need to get the actual category from your API
+        description: serie.overview,
       })));
 
       // For the sake of this example, let's use the first movie as the featured series
       setFeaturedSeries({
-        id: moviesData.results[0].id,
-        image: `https://image.tmdb.org/t/p/w500${moviesData.results[0].poster_path}`,
-        name: moviesData.results[0].title,
-        category: "Drame", // You may need to get the actual category from your API
-        description: moviesData.results[0].overview,
+        id: seriesData.results[0].id,
+        image: `https://image.tmdb.org/t/p/w500${seriesData.results[0].poster_path}`,
+        name: seriesData.results[0].title,
+        category: seriesData.results[0].genre_ids, // You may need to get the actual category from your API
+        description: seriesData.results[0].overview,
       });
     } catch (error) {
       console.error('Error fetching data:', error);
