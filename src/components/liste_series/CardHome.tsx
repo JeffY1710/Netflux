@@ -53,7 +53,6 @@ const CardHome: React.FC<CardProps> = ({ seriesData, serieId, genreName }) => {
         
       </div>
 
-        <p className="text-gray-700 bg-white text-base text-black inline-block rounded pr-2 px-2">{category}</p>
         <button >{serieId}</button>
         {/*onClick={()=>addToWatchlist(getUserById(""), serieId)}*/}
       </div> 

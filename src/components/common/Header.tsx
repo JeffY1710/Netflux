@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
+import { disconnect } from '../../data/firebase/global';
 
 const Header: React.FC = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
                                   <Link to={''} className='li'>Profil</Link>
                                   <Link to={''} className='li'>Liste des envies</Link>
                                   <Link to={''} className='li'>Se déconnecter</Link>
+                                  <button onClick={disconnect}>Se déconnecter</button>
                               </ul>
                           </div>
                       )}

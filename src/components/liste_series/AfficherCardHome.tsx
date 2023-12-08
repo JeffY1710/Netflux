@@ -101,6 +101,8 @@ const Home: React.FC = () => {
 
   return (
     <>
+
+    <Header/>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=DM+Serif+Display&family=Lora:wght@500&family=Montserrat:wght@300&display=swap');
       </style>
@@ -112,7 +114,7 @@ const Home: React.FC = () => {
         <h1 className="text-5xl font-custom font-bold mb-4 mt-24 text-white pb-12">Shows populaires</h1>
         <div className="grid grid-cols-5 gap-12">
           {seriesList.map(series => (
-            <NavLink to={"" + series.name.replace(/ /g,'')}><CardHome serieId={series.id} seriesData={series} genreName={""} /></NavLink>
+            <NavLink to={"" + series.name.replace(/ /g,'')}><CardHome serieId={series.id} seriesData={series} genreName={getGenreName(series.category[0])} /></NavLink>
           ))}
         </div>
       </div>

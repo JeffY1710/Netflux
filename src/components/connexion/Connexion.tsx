@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Connexion, disconnect, isConnected } from "../../data/firebase/global";
+
 interface FormData {
 	email: string;
 	password: string;

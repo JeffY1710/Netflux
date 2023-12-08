@@ -59,6 +59,10 @@ const router = createBrowserRouter([
   {
     path:"/avis",
     element: <Commentaires/>
+  },
+  {
+    path:"/calendar",
+    element: <Calendar/>
   }
 ]);
 
