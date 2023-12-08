@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Welcome to Netflux
+
+L2A - Cergy
+Group 2 : Jeff Yabas, Lucas Turschwell, Mathéo Bruno 
 
 ## Available Scripts
 
