@@ -13,6 +13,7 @@ import AfficherCardHome from "./components/liste_series/AfficherCardHome";
 import Header from "./components/common/Header";
 import SerieDetail from "./components/serie_details/SerieDetails";
 import SerieDetails from "./components/serie_details/SerieDetails";
+import Calendar from "./components/calendrier/Calendar";
 
 
 
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
  
 	{
 		path: "/",
-		element: <Root/>,
+		element: <Calendar/>,
 	},
 
   {

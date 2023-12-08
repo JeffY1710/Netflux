@@ -12,7 +12,6 @@ interface SeriesList {
 }
 
 const Home: React.FC = () => {
-  // Replace with data from your API
   const seriesList: SeriesList[] = [
     {
       id: 1,
